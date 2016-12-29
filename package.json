@@ -1,0 +1,21 @@
+{
+  "name": "browser-libs-node",
+  "version": "0.1.0",
+  "description": "webpacked node-libs",
+  "main": "index.js",
+  "repository": "''",
+  "author": "Thomas Grainger <browser-libs-node@graingert.co.uk>",
+  "license": "TBD",
+  "scripts": {
+    "build": "webpack --bail --progress"
+  },
+  "devDependencies": {
+    "babel-plugin-transform-runtime": "^6.15.0",
+    "babel-preset-env": "^1.1.4",
+    "babel-register": "^6.18.0",
+    "webpack": "2.2.0-rc.3"
+  },
+  "files": [
+     "dist"
+  ]
+}
