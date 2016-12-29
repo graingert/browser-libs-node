@@ -10,7 +10,7 @@ function clearObj(obj, exclude) {
   }
 }
 
-clearObj(nodeLibsBrowser, /^(process|contextify|buffer)$/);
+clearObj(nodeLibsBrowser, /^(process|buffer)$/);
 
 export default {
   entry: {
@@ -25,9 +25,6 @@ export default {
   externals: /^(babel-runtime|buffer)(\/.*)?/,
   resolve: {
     modules: [path.join(__dirname, 'node/lib'), 'node_modules'],
-    alias: {
-      contextify: 'empty-module',
-    },
   },
   plugins: [
     new webpack.DefinePlugin({
