@@ -10,11 +10,12 @@ function clearObj(obj, exclude) {
   }
 }
 
-clearObj(nodeLibsBrowser, /^(process|buffer)$/);
+clearObj(nodeLibsBrowser, /^(process|buffer|vm)$/);
 
 export default {
   entry: {
-    url: './node/lib/url.js',
+    url: './node/lib/url',
+    util: './node/lib/util',
   },
   output: {
     path: path.join(__dirname, 'dist/'),
@@ -22,13 +23,17 @@ export default {
     library: '[name]',
     libraryTarget: 'commonjs2',
   },
-  externals: /^(babel-runtime|buffer)(\/.*)?/,
+  externals: /^(babel-runtime|buffer|vm-browserify)(\/.*)?/,
   resolve: {
     modules: [path.join(__dirname, 'node/lib'), 'node_modules'],
+    alias: {
+      uv$: require.resolve('./fake-uv'),
+    }
   },
   plugins: [
     new webpack.DefinePlugin({
       'process.binding': 'require',
+      'process.release.name': JSON.stringify(process.release.name),
     }),
   ],
   module: {
@@ -45,4 +50,4 @@ export default {
       }
     ]
   }
-}
+};
